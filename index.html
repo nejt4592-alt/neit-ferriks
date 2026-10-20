@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нейт Бот — Твой игровой бот в Telegram</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #ff6b9d;
+            margin: 0 auto 20px;
+            background: url('https://i.pinimg.com/736x/8c/6d/a1/8c6da1b4f4f5f6d8a6b5c4d3e2f1a0b9.jpg') center/cover;
+            box-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #ff6b9d, #c44569, #f8b500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #a0a0c0;
+            margin-bottom: 40px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: #ff6b9d;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .feature-desc {
+            font-size: 15px;
+            color: #a0a0c0;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #ff6b9d, #c44569);
+            color: #fff;
+            text-decoration: none;
+            padding: 20px 60px;
+            border-radius: 50px;
+            font-size: 22px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 20px;
+                margin-top: 20px;
+            }
+            h1 { font-size: 32px; }
+            .btn { padding: 18px 40px; font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="avatar"></div>
+        
+        <h1>Нейт Бот</h1>
+        <p class="subtitle">Твой игровой мир прямо в Telegram</p>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">💰</div>
+                <div class="feature-title">Экономика</div>
+                <div class="feature-desc">Зарабатывай монеты, открывай бизнес и качай свой доход.</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">💎</div>
+                <div class="feature-title">Нейткоины</div>
+                <div class="feature-desc">Фарми премиум-валюту и покупай эксклюзивный VIP статус.</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🐾</div>
+                <div class="feature-title">Питомцы</div>
+                <div class="feature-desc">Заведи друга, ухаживай за ним и получай бонусы.</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🎰</div>
+                <div class="feature-title">Азарт</div>
+                <div class="feature-desc">Испытай удачу в казино, рулетке и сорви джекпот.</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🎁</div>
+                <div class="feature-title">Подарки</div>
+                <div class="feature-desc">Дари друзьям подарки с личными записками.</div>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🏆</div>
+                <div class="feature-title">Соревнования</div>
+                <div class="feature-desc">Попади в топ самых богатых и уважаемых игроков.</div>
+            </div>
+        </div>
+        
+        <!-- ТУТ ПОМЕНЯЙ НИК НА СВОЙ -->
+        <a href="https://t.me/neit_ferriks_bot" class="btn" target="_blank">🚀 Начать играть</a>
+        
+        <div class="footer">
+            © 2026 Нейт Бот. Сделано с душой.
+        </div>
+    </div>
+</body>
+</html>
