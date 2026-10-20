@@ -13,43 +13,55 @@
         }
 
         body {
-            background: radial-gradient(circle at top right, #2a0a0a, #0a0a0a 60%);
+            /* Глубокий фон с красными всполохами для контраста со стеклом */
+            background: #050505;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(220, 38, 38, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(220, 38, 38, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
             color: #fff;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            padding-bottom: 100px; /* Отступ для нижней панели */
+            padding-bottom: 110px;
             overflow-x: hidden;
         }
 
         /* ====== ЭКРАНЫ ====== */
         .screen {
-            display: none; /* По умолчанию скрыты */
+            display: none;
             width: 100%;
             max-width: 900px;
             animation: fadeIn 0.4s ease;
         }
 
         .screen.active {
-            display: block; /* Показываем только активный экран */
+            display: block;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ====== ЭФФЕКТ ЖИДКОГО СТЕКЛА ====== */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.2); /* Блик сверху */
+            border-left: 1px solid rgba(255, 255, 255, 0.2); /* Блик слева */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
         }
 
         /* ====== ГЛАВНАЯ СТРАНИЦА ====== */
         .container {
             width: 100%;
-            background: rgba(20, 20, 20, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(220, 38, 38, 0.2);
             border-radius: 24px;
             padding: 50px 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(220, 38, 38, 0.1);
             text-align: center;
             margin-top: 20px;
         }
@@ -58,16 +70,16 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            border: 4px solid #dc2626;
+            border: 3px solid rgba(255, 255, 255, 0.2);
             margin: 0 auto 20px;
             background: url('https://i.pinimg.com/736x/8c/6d/a1/8c6da1b4f4f5f6d8a6b5c4d3e2f1a0b9.jpg') center/cover;
-            box-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
+            box-shadow: 0 0 30px rgba(220, 38, 38, 0.3);
             animation: float 4s ease-in-out infinite;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-10px); }
         }
 
         h1 {
@@ -96,9 +108,10 @@
         }
 
         .feature {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(8px);
             padding: 25px;
-            border-radius: 16px;
+            border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
             cursor: pointer;
@@ -106,18 +119,18 @@
 
         .feature:hover {
             transform: translateY(-5px);
-            border-color: #dc2626;
-            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.2);
+            border-color: rgba(220, 38, 38, 0.5);
             background: rgba(220, 38, 38, 0.05);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.15);
         }
 
         .feature-icon { font-size: 36px; margin-bottom: 15px; }
         .feature-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #fff; }
-        .feature-desc { font-size: 15px; color: #999; line-height: 1.5; }
+        .feature-desc { font-size: 15px; color: #aaa; line-height: 1.5; }
 
         .btn {
             display: inline-block;
-            background: #dc2626;
+            background: linear-gradient(135deg, #dc2626, #991b1b);
             color: #fff;
             text-decoration: none;
             padding: 18px 50px;
@@ -125,35 +138,32 @@
             font-size: 20px;
             font-weight: bold;
             transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
-            border: none;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+            border: 1px solid rgba(255,255,255,0.1);
             cursor: pointer;
         }
 
         .btn:hover {
-            background: #ef4444;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
             transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.6);
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.5);
         }
 
         /* ====== СТРАНИЦА ПРОФИЛЯ ====== */
         .profile-card {
-            background: rgba(20, 20, 20, 0.8);
-            border: 1px solid #dc2626;
             border-radius: 24px;
             padding: 40px;
             text-align: center;
             margin-top: 40px;
-            box-shadow: 0 0 40px rgba(220, 38, 38, 0.15);
         }
 
         .profile-avatar {
             width: 100px;
             height: 100px;
-            background: #333;
+            background: rgba(220, 38, 38, 0.2);
             border-radius: 50%;
             margin: 0 auto 20px;
-            border: 3px solid #dc2626;
+            border: 2px solid rgba(220, 38, 38, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -161,7 +171,7 @@
         }
 
         .profile-nick { font-size: 28px; font-weight: bold; margin-bottom: 5px; }
-        .profile-id { font-size: 14px; color: #777; margin-bottom: 30px; }
+        .profile-id { font-size: 14px; color: #888; margin-bottom: 30px; }
 
         .stats-grid {
             display: grid;
@@ -171,13 +181,14 @@
         }
 
         .stat-box {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 16px;
         }
 
-        .stat-box-title { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
-        .stat-box-value { font-size: 24px; font-weight: bold; color: #dc2626; }
+        .stat-box-title { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .stat-box-value { font-size: 24px; font-weight: bold; color: #ef4444; text-shadow: 0 0 10px rgba(220,38,38,0.5); }
 
         /* ====== СТРАНИЦА VIP ====== */
         .vip-header { text-align: center; margin-top: 20px; margin-bottom: 30px; }
@@ -190,8 +201,9 @@
         }
 
         .vip-item {
-            background: rgba(20, 20, 20, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 20px;
             border-radius: 16px;
             display: flex;
@@ -201,32 +213,36 @@
         }
 
         .vip-item:hover {
-            border-color: #dc2626;
+            border-color: rgba(220, 38, 38, 0.5);
             background: rgba(220, 38, 38, 0.05);
         }
 
         .vip-info h3 { font-size: 20px; margin-bottom: 5px; }
         .vip-info p { font-size: 14px; color: #999; }
         
-        .vip-price {
-            text-align: right;
-        }
-        .vip-price .price { font-size: 24px; font-weight: bold; color: #dc2626; }
+        .vip-price { text-align: right; }
+        .vip-price .price { font-size: 24px; font-weight: bold; color: #ef4444; }
         .vip-price .currency { font-size: 14px; color: #888; }
 
-        /* ====== НИЖНЯЯ ПАНЕЛЬ ====== */
+        /* ====== НИЖНЯЯ ПАНЕЛЬ (ЖИДКОЕ СТЕКЛО) ====== */
         .bottom-nav {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(15, 15, 15, 0.95);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(220, 38, 38, 0.3);
+            bottom: 20px; /* Отступ от низа экрана */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 400px;
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px; /* Закругленная панель */
             display: flex;
             justify-content: space-around;
-            padding: 15px 0;
+            padding: 15px 10px;
             z-index: 100;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
         }
 
         .nav-item {
@@ -237,21 +253,28 @@
             text-decoration: none;
             cursor: pointer;
             transition: 0.3s;
+            padding: 5px 15px;
+            border-radius: 15px;
         }
 
-        .nav-item.active { color: #dc2626; }
-        .nav-icon { font-size: 24px; margin-bottom: 4px; }
+        .nav-item.active {
+            color: #ef4444;
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .nav-icon { font-size: 22px; margin-bottom: 4px; transition: 0.3s; }
+        .nav-item.active .nav-icon { transform: translateY(-2px); text-shadow: 0 0 15px rgba(220,38,38,0.8); }
         .nav-text { font-size: 12px; font-weight: bold; }
 
-        /* ====== ВСПЛЫВАЮЩЕЕ ОКНО (МОДАЛКА) ====== */
+        /* ====== МОДАЛКА (ЖИДКОЕ СТЕКЛО) ====== */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
             display: none;
             justify-content: center;
             align-items: center;
@@ -263,22 +286,25 @@
         .modal-overlay.active { display: flex; opacity: 1; }
 
         .modal {
-            background: #1a1a1a;
-            border: 1px solid #dc2626;
-            border-radius: 20px;
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
             padding: 40px;
             max-width: 500px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 0 50px rgba(220, 38, 38, 0.3);
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            transform: scale(0.85);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .modal-overlay.active .modal { transform: scale(1); }
 
-        .modal-icon { font-size: 50px; margin-bottom: 20px; }
-        .modal-title { font-size: 28px; color: #dc2626; margin-bottom: 15px; font-weight: bold; }
+        .modal-icon { font-size: 50px; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(220,38,38,0.5)); }
+        .modal-title { font-size: 28px; color: #ef4444; margin-bottom: 15px; font-weight: bold; }
         .modal-text { font-size: 16px; color: #ccc; line-height: 1.6; margin-bottom: 30px; }
         .modal-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
 
@@ -289,20 +315,21 @@
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
-            border: none;
+            border: 1px solid rgba(255,255,255,0.1);
             text-decoration: none;
         }
 
-        .modal-btn-close { background: #333; color: #fff; }
-        .modal-btn-close:hover { background: #555; }
-        .modal-btn-go { background: #dc2626; color: #fff; }
-        .modal-btn-go:hover { background: #ef4444; }
+        .modal-btn-close { background: rgba(255, 255, 255, 0.1); color: #fff; }
+        .modal-btn-close:hover { background: rgba(255, 255, 255, 0.2); }
+        .modal-btn-go { background: linear-gradient(135deg, #dc2626, #991b1b); color: #fff; }
+        .modal-btn-go:hover { background: linear-gradient(135deg, #ef4444, #dc2626); box-shadow: 0 0 20px rgba(220,38,38,0.4); }
 
         @media (max-width: 600px) {
             h1 { font-size: 32px; }
             .container { padding: 30px 20px; }
             .stats-grid { grid-template-columns: 1fr; }
             .vip-item { flex-direction: column; text-align: center; gap: 15px; }
+            .bottom-nav { bottom: 10px; width: 95%; }
         }
     </style>
 </head>
@@ -310,7 +337,7 @@
 
     <!-- ================= ЭКРАН 1: ГЛАВНАЯ ================= -->
     <div class="screen active" id="screen-home">
-        <div class="container">
+        <div class="container glass-panel">
             <div class="avatar"></div>
             <h1>Нейт Бот</h1>
             <p class="subtitle">Твой игровой мир прямо в Telegram</p>
@@ -354,7 +381,7 @@
 
     <!-- ================= ЭКРАН 2: ПРОФИЛЬ ================= -->
     <div class="screen" id="screen-profile">
-        <div class="profile-card">
+        <div class="profile-card glass-panel">
             <div class="profile-avatar">👤</div>
             <div class="profile-nick">Игрок Нейта</div>
             <div class="profile-id">ID: 123456789</div>
@@ -378,10 +405,9 @@
                 </div>
             </div>
             
-            <p style="color: #777; font-size: 14px; margin-top: 20px;">
+            <p style="color: #888; font-size: 14px; margin-top: 20px; margin-bottom: 20px;">
                 * Пока это тестовые данные. Скоро мы подключим базу данных, и тут будет твой реальный профиль!
             </p>
-            <br>
             <a href="https://t.me/neit_ferriks_bot" class="btn" target="_blank">Открыть в Telegram</a>
         </div>
     </div>
@@ -450,12 +476,12 @@
             </div>
         </div>
         
-        <div style="text-align: center; margin-top: 30px;">
+        <div style="text-align: center; margin-top: 40px;">
              <a href="https://t.me/neit_ferriks_bot" class="btn" target="_blank">Купить в боте</a>
         </div>
     </div>
 
-    <!-- ================= НИЖНЯЯ ПАНЕЛЬ ================= -->
+    <!-- ================= НИЖНЯЯ ПАНЕЛЬ (ЖИДКОЕ СТЕКЛО) ================= -->
     <div class="bottom-nav">
         <div class="nav-item active" onclick="switchScreen('home', this)">
             <div class="nav-icon">🏠</div>
@@ -486,7 +512,7 @@
 
     <!-- === СКРИПТ (ЛОГИКА) === -->
     <script>
-        // Тексты для модального окна (кнопки на главной)
+        // Тексты для модального окна
         const featuresData = {
             economy: {
                 icon: "💰", title: "Экономика",
@@ -514,7 +540,6 @@
             }
         };
 
-        // Открытие модального окна
         function openModal(type) {
             const data = featuresData[type];
             if (!data) return;
@@ -524,28 +549,21 @@
             document.getElementById('modalOverlay').classList.add('active');
         }
 
-        // Закрытие модального окна
         function closeModal(event) {
             document.getElementById('modalOverlay').classList.remove('active');
         }
 
-        // Переключение экранов (Главная / Профиль / VIP)
         function switchScreen(screenName, element) {
-            // 1. Скрываем все экраны
             document.querySelectorAll('.screen').forEach(screen => {
                 screen.classList.remove('active');
             });
-            
-            // 2. Показываем нужный
             document.getElementById('screen-' + screenName).classList.add('active');
             
-            // 3. Меняем цвет кнопок в меню
             document.querySelectorAll('.nav-item').forEach(nav => {
                 nav.classList.remove('active');
             });
             element.classList.add('active');
 
-            // Прокручиваем страницу наверх при смене экрана
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
