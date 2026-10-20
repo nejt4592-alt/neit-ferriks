@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Нейт Бот — Твой игровой бот в Telegram</title>
+    <title>Нейт Бот — Твой игровой мир</title>
     <style>
         * {
             margin: 0;
@@ -20,20 +20,38 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            padding-bottom: 100px; /* Отступ для нижней панели */
             overflow-x: hidden;
         }
 
-        .container {
+        /* ====== ЭКРАНЫ ====== */
+        .screen {
+            display: none; /* По умолчанию скрыты */
+            width: 100%;
             max-width: 900px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .screen.active {
+            display: block; /* Показываем только активный экран */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ====== ГЛАВНАЯ СТРАНИЦА ====== */
+        .container {
             width: 100%;
             background: rgba(20, 20, 20, 0.6);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(220, 38, 38, 0.2);
             border-radius: 24px;
-            padding: 60px 40px;
+            padding: 50px 40px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(220, 38, 38, 0.1);
             text-align: center;
-            margin-top: 40px;
+            margin-top: 20px;
         }
 
         .avatar {
@@ -42,7 +60,6 @@
             border-radius: 50%;
             border: 4px solid #dc2626;
             margin: 0 auto 20px;
-            /* Сюда можно вставить свою картинку */
             background: url('https://i.pinimg.com/736x/8c/6d/a1/8c6da1b4f4f5f6d8a6b5c4d3e2f1a0b9.jpg') center/cover;
             box-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
             animation: float 4s ease-in-out infinite;
@@ -78,7 +95,6 @@
             text-align: left;
         }
 
-        /* Делаем карточки кликабельными */
         .feature {
             background: rgba(255, 255, 255, 0.03);
             padding: 25px;
@@ -95,36 +111,21 @@
             background: rgba(220, 38, 38, 0.05);
         }
 
-        .feature-icon {
-            font-size: 36px;
-            margin-bottom: 15px;
-        }
-
-        .feature-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-
-        .feature-desc {
-            font-size: 15px;
-            color: #999;
-            line-height: 1.5;
-        }
+        .feature-icon { font-size: 36px; margin-bottom: 15px; }
+        .feature-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+        .feature-desc { font-size: 15px; color: #999; line-height: 1.5; }
 
         .btn {
             display: inline-block;
             background: #dc2626;
             color: #fff;
             text-decoration: none;
-            padding: 20px 60px;
+            padding: 18px 50px;
             border-radius: 50px;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
             transition: all 0.3s;
             box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
-            margin-bottom: 20px;
             border: none;
             cursor: pointer;
         }
@@ -135,13 +136,114 @@
             box-shadow: 0 15px 40px rgba(220, 38, 38, 0.6);
         }
 
-        .footer {
+        /* ====== СТРАНИЦА ПРОФИЛЯ ====== */
+        .profile-card {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid #dc2626;
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
             margin-top: 40px;
-            font-size: 14px;
-            color: #555;
+            box-shadow: 0 0 40px rgba(220, 38, 38, 0.15);
         }
 
-        /* === СТИЛИ ДЛЯ ВСПЛЫВАЮЩЕГО ОКНА (МОДАЛКИ) === */
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            background: #333;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid #dc2626;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .profile-nick { font-size: 28px; font-weight: bold; margin-bottom: 5px; }
+        .profile-id { font-size: 14px; color: #777; margin-bottom: 30px; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        .stat-box-title { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .stat-box-value { font-size: 24px; font-weight: bold; color: #dc2626; }
+
+        /* ====== СТРАНИЦА VIP ====== */
+        .vip-header { text-align: center; margin-top: 20px; margin-bottom: 30px; }
+        .vip-header h2 { font-size: 36px; color: #dc2626; }
+        
+        .vip-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .vip-item {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .vip-item:hover {
+            border-color: #dc2626;
+            background: rgba(220, 38, 38, 0.05);
+        }
+
+        .vip-info h3 { font-size: 20px; margin-bottom: 5px; }
+        .vip-info p { font-size: 14px; color: #999; }
+        
+        .vip-price {
+            text-align: right;
+        }
+        .vip-price .price { font-size: 24px; font-weight: bold; color: #dc2626; }
+        .vip-price .currency { font-size: 14px; color: #888; }
+
+        /* ====== НИЖНЯЯ ПАНЕЛЬ ====== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(220, 38, 38, 0.3);
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #777;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .nav-item.active { color: #dc2626; }
+        .nav-icon { font-size: 24px; margin-bottom: 4px; }
+        .nav-text { font-size: 12px; font-weight: bold; }
+
+        /* ====== ВСПЛЫВАЮЩЕЕ ОКНО (МОДАЛКА) ====== */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -150,7 +252,7 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(5px);
-            display: none; /* Скрыто по умолчанию */
+            display: none;
             justify-content: center;
             align-items: center;
             z-index: 1000;
@@ -158,10 +260,7 @@
             transition: opacity 0.3s ease;
         }
 
-        .modal-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
+        .modal-overlay.active { display: flex; opacity: 1; }
 
         .modal {
             background: #1a1a1a;
@@ -176,35 +275,12 @@
             transition: transform 0.3s ease;
         }
 
-        .modal-overlay.active .modal {
-            transform: scale(1);
-        }
+        .modal-overlay.active .modal { transform: scale(1); }
 
-        .modal-icon {
-            font-size: 50px;
-            margin-bottom: 20px;
-        }
-
-        .modal-title {
-            font-size: 28px;
-            color: #dc2626;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-
-        .modal-text {
-            font-size: 16px;
-            color: #ccc;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .modal-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        .modal-icon { font-size: 50px; margin-bottom: 20px; }
+        .modal-title { font-size: 28px; color: #dc2626; margin-bottom: 15px; font-weight: bold; }
+        .modal-text { font-size: 16px; color: #ccc; line-height: 1.6; margin-bottom: 30px; }
+        .modal-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
 
         .modal-btn {
             padding: 12px 30px;
@@ -217,85 +293,181 @@
             text-decoration: none;
         }
 
-        .modal-btn-close {
-            background: #333;
-            color: #fff;
-        }
-
-        .modal-btn-close:hover {
-            background: #555;
-        }
-
-        .modal-btn-go {
-            background: #dc2626;
-            color: #fff;
-        }
-
-        .modal-btn-go:hover {
-            background: #ef4444;
-        }
+        .modal-btn-close { background: #333; color: #fff; }
+        .modal-btn-close:hover { background: #555; }
+        .modal-btn-go { background: #dc2626; color: #fff; }
+        .modal-btn-go:hover { background: #ef4444; }
 
         @media (max-width: 600px) {
-            .container {
-                padding: 40px 20px;
-                margin-top: 20px;
-            }
             h1 { font-size: 32px; }
-            .btn { padding: 18px 40px; font-size: 18px; }
-            .modal { padding: 30px 20px; }
+            .container { padding: 30px 20px; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .vip-item { flex-direction: column; text-align: center; gap: 15px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="avatar"></div>
-        
-        <h1>Нейт Бот</h1>
-        <p class="subtitle">Твой игровой мир прямо в Telegram</p>
-        
-        <div class="features">
-            <!-- Добавили onclick функции -->
-            <div class="feature" onclick="openModal('economy')">
-                <div class="feature-icon">💰</div>
-                <div class="feature-title">Экономика</div>
-                <div class="feature-desc">Зарабатывай монеты, открывай бизнес и качай свой доход.</div>
+
+    <!-- ================= ЭКРАН 1: ГЛАВНАЯ ================= -->
+    <div class="screen active" id="screen-home">
+        <div class="container">
+            <div class="avatar"></div>
+            <h1>Нейт Бот</h1>
+            <p class="subtitle">Твой игровой мир прямо в Telegram</p>
+            
+            <div class="features">
+                <div class="feature" onclick="openModal('economy')">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-title">Экономика</div>
+                    <div class="feature-desc">Зарабатывай монеты, открывай бизнес и качай свой доход.</div>
+                </div>
+                <div class="feature" onclick="openModal('neitcoins')">
+                    <div class="feature-icon">💎</div>
+                    <div class="feature-title">Нейткоины</div>
+                    <div class="feature-desc">Фарми премиум-валюту и покупай эксклюзивный VIP статус.</div>
+                </div>
+                <div class="feature" onclick="openModal('pets')">
+                    <div class="feature-icon">🐾</div>
+                    <div class="feature-title">Питомцы</div>
+                    <div class="feature-desc">Заведи друга, ухаживай за ним и получай бонусы.</div>
+                </div>
+                <div class="feature" onclick="openModal('casino')">
+                    <div class="feature-icon">🎰</div>
+                    <div class="feature-title">Азарт</div>
+                    <div class="feature-desc">Испытай удачу в казино, рулетке и сорви джекпот.</div>
+                </div>
+                <div class="feature" onclick="openModal('gifts')">
+                    <div class="feature-icon">🎁</div>
+                    <div class="feature-title">Подарки</div>
+                    <div class="feature-desc">Дари друзьям подарки с личными записками.</div>
+                </div>
+                <div class="feature" onclick="openModal('top')">
+                    <div class="feature-icon">🏆</div>
+                    <div class="feature-title">Соревнования</div>
+                    <div class="feature-desc">Попади в топ самых богатых и уважаемых игроков.</div>
+                </div>
             </div>
             
-            <div class="feature" onclick="openModal('neitcoins')">
-                <div class="feature-icon">💎</div>
-                <div class="feature-title">Нейткоины</div>
-                <div class="feature-desc">Фарми премиум-валюту и покупай эксклюзивный VIP статус.</div>
+            <a href="https://t.me/neit_ferriks_bot" class="btn" target="_blank">🚀 Начать играть</a>
+        </div>
+    </div>
+
+    <!-- ================= ЭКРАН 2: ПРОФИЛЬ ================= -->
+    <div class="screen" id="screen-profile">
+        <div class="profile-card">
+            <div class="profile-avatar">👤</div>
+            <div class="profile-nick">Игрок Нейта</div>
+            <div class="profile-id">ID: 123456789</div>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-box-title">Баланс монет</div>
+                    <div class="stat-box-value">1 500 000</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-title">Нейткоины</div>
+                    <div class="stat-box-value">💎 25</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-title">Рейтинг</div>
+                    <div class="stat-box-value">⭐ 450</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-title">Бизнес</div>
+                    <div class="stat-box-value">Lvl 5</div>
+                </div>
             </div>
             
-            <div class="feature" onclick="openModal('pets')">
-                <div class="feature-icon">🐾</div>
-                <div class="feature-title">Питомцы</div>
-                <div class="feature-desc">Заведи друга, ухаживай за ним и получай бонусы.</div>
+            <p style="color: #777; font-size: 14px; margin-top: 20px;">
+                * Пока это тестовые данные. Скоро мы подключим базу данных, и тут будет твой реальный профиль!
+            </p>
+            <br>
+            <a href="https://t.me/neit_ferriks_bot" class="btn" target="_blank">Открыть в Telegram</a>
+        </div>
+    </div>
+
+    <!-- ================= ЭКРАН 3: VIP ================= -->
+    <div class="screen" id="screen-vip">
+        <div class="vip-header">
+            <h2>👑 VIP Статусы</h2>
+            <p style="color: #888; margin-top: 10px;">Покупай за Нейткоины и получай бонусы к зарплате!</p>
+        </div>
+
+        <div class="vip-list">
+            <div class="vip-item">
+                <div class="vip-info">
+                    <h3>🥉 VIP Бронза</h3>
+                    <p>+5% к зарплате бизнеса</p>
+                </div>
+                <div class="vip-price">
+                    <div class="price">10</div>
+                    <div class="currency">💎 Нейткоинов</div>
+                </div>
             </div>
             
-            <div class="feature" onclick="openModal('casino')">
-                <div class="feature-icon">🎰</div>
-                <div class="feature-title">Азарт</div>
-                <div class="feature-desc">Испытай удачу в казино, рулетке и сорви джекпот.</div>
+            <div class="vip-item">
+                <div class="vip-info">
+                    <h3>🥈 VIP Серебро</h3>
+                    <p>+10% к зарплате бизнеса</p>
+                </div>
+                <div class="vip-price">
+                    <div class="price">30</div>
+                    <div class="currency">💎 Нейткоинов</div>
+                </div>
             </div>
             
-            <div class="feature" onclick="openModal('gifts')">
-                <div class="feature-icon">🎁</div>
-                <div class="feature-title">Подарки</div>
-                <div class="feature-desc">Дари друзьям подарки с личными записками.</div>
+            <div class="vip-item">
+                <div class="vip-info">
+                    <h3>🥇 VIP Золото</h3>
+                    <p>+15% к зарплате бизнеса</p>
+                </div>
+                <div class="vip-price">
+                    <div class="price">100</div>
+                    <div class="currency">💎 Нейткоинов</div>
+                </div>
             </div>
 
-            <div class="feature" onclick="openModal('top')">
-                <div class="feature-icon">🏆</div>
-                <div class="feature-title">Соревнования</div>
-                <div class="feature-desc">Попади в топ самых богатых и уважаемых игроков.</div>
+            <div class="vip-item">
+                <div class="vip-info">
+                    <h3>💎 VIP Платина</h3>
+                    <p>+20% к зарплате бизнеса</p>
+                </div>
+                <div class="vip-price">
+                    <div class="price">300</div>
+                    <div class="currency">💎 Нейткоинов</div>
+                </div>
+            </div>
+
+            <div class="vip-item">
+                <div class="vip-info">
+                    <h3>👑 VIP Бриллиант</h3>
+                    <p>+30% к зарплате бизнеса (максимальный)</p>
+                </div>
+                <div class="vip-price">
+                    <div class="price">1000</div>
+                    <div class="currency">💎 Нейткоинов</div>
+                </div>
             </div>
         </div>
         
-        <a href="https://t.me/neit_ferriks_bot" class="btn" target="_blank">🚀 Начать играть</a>
-        
-        <div class="footer">
-            © 2026 Нейт Бот. Сделано с душой.
+        <div style="text-align: center; margin-top: 30px;">
+             <a href="https://t.me/neit_ferriks_bot" class="btn" target="_blank">Купить в боте</a>
+        </div>
+    </div>
+
+    <!-- ================= НИЖНЯЯ ПАНЕЛЬ ================= -->
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="switchScreen('home', this)">
+            <div class="nav-icon">🏠</div>
+            <div class="nav-text">Главная</div>
+        </div>
+        <div class="nav-item" onclick="switchScreen('profile', this)">
+            <div class="nav-icon">👤</div>
+            <div class="nav-text">Профиль</div>
+        </div>
+        <div class="nav-item" onclick="switchScreen('vip', this)">
+            <div class="nav-icon">💎</div>
+            <div class="nav-text">VIP</div>
         </div>
     </div>
 
@@ -312,58 +484,69 @@
         </div>
     </div>
 
-    <!-- === СКРИПТ (ЛОГИКА ОКНА) === -->
+    <!-- === СКРИПТ (ЛОГИКА) === -->
     <script>
-        // База данных с текстами для кнопок
+        // Тексты для модального окна (кнопки на главной)
         const featuresData = {
             economy: {
-                icon: "💰",
-                title: "Экономика",
+                icon: "💰", title: "Экономика",
                 text: "Начни свой путь с нуля! Работай, выполняй ежедневные бонусы и копи монеты. Купи свой первый бизнес, чтобы деньги капали сами, но не забывай платить налоги, иначе зарплата остановится!"
             },
             neitcoins: {
-                icon: "💎",
-                title: "Нейткоины",
+                icon: "💎", title: "Нейткоины",
                 text: "Премиум-валюта бота. Её нельзя купить за монеты в обычном магазине. Фарми Нейткоины раз в час, участвуй в ивентах и обменивай свои миллионы на заветные кристаллы. Покупай VIP-статусы и получай бонусы к доходу!"
             },
             pets: {
-                icon: "🐾",
-                title: "Питомцы",
+                icon: "🐾", title: "Питомцы",
                 text: "Твой верный цифровой друг. Выбери лису, кошку, собаку или хорька. Корми, гладь и играй с ним каждый день. Если питомец полюбит тебя (50+ ❤️), он начнет приносить пассивный бонус к зарплате бизнеса."
             },
             casino: {
-                icon: "🎰",
-                title: "Азарт",
+                icon: "🎰", title: "Азарт",
                 text: "Испытай фортуну! Залетай в казино, ставь на чёт/нечет в рулетке или вкидывай весь баланс. Помни: удача любит смелых, но иногда лучше вовремя остановиться. Шанс выигрыша — 45%."
             },
             gifts: {
-                icon: "🎁",
-                title: "Подарки",
+                icon: "🎁", title: "Подарки",
                 text: "Купи розу, мишку или кольцо и подари другу или подруге прямо в боте. Добавь личную записку! Подарки красуются в профиле и повышают твой статус среди других игроков."
             },
             top: {
-                icon: "🏆",
-                title: "Соревнования",
+                icon: "🏆", title: "Соревнования",
                 text: "Стань легендой Нейта! Попади в топ по рейтингу или по количеству денег. Прокачивай свой профиль, зарабатывай статусы и докажи всем, что ты лучший игрок."
             }
         };
 
-        // Функция открытия окна
+        // Открытие модального окна
         function openModal(type) {
             const data = featuresData[type];
             if (!data) return;
-
             document.getElementById('modalIcon').innerText = data.icon;
             document.getElementById('modalTitle').innerText = data.title;
             document.getElementById('modalText').innerText = data.text;
-            
             document.getElementById('modalOverlay').classList.add('active');
         }
 
-        // Функция закрытия окна
+        // Закрытие модального окна
         function closeModal(event) {
-            // Закрываем только если кликнули по фону или кнопке закрыть
             document.getElementById('modalOverlay').classList.remove('active');
+        }
+
+        // Переключение экранов (Главная / Профиль / VIP)
+        function switchScreen(screenName, element) {
+            // 1. Скрываем все экраны
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            
+            // 2. Показываем нужный
+            document.getElementById('screen-' + screenName).classList.add('active');
+            
+            // 3. Меняем цвет кнопок в меню
+            document.querySelectorAll('.nav-item').forEach(nav => {
+                nav.classList.remove('active');
+            });
+            element.classList.add('active');
+
+            // Прокручиваем страницу наверх при смене экрана
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
