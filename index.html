@@ -13,8 +13,9 @@
         }
 
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: #fff;
+            /* Светлый, почти белый фон с легким серым оттенком */
+            background: #f8f9fa; 
+            color: #333;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -26,12 +27,12 @@
         .container {
             max-width: 900px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #ffffff;
             border-radius: 24px;
             padding: 60px 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            /* Красивая красная тень */
+            box-shadow: 0 20px 60px rgba(220, 38, 38, 0.15);
+            border: 1px solid #fee2e2;
             text-align: center;
             margin-top: 40px;
         }
@@ -40,10 +41,11 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            border: 4px solid #ff6b9d;
+            border: 4px solid #dc2626; /* Красная рамка */
             margin: 0 auto 20px;
+            /* Если захочешь свою картинку, поменяй ссылку в скобках url('...') */
             background: url('https://i.pinimg.com/736x/8c/6d/a1/8c6da1b4f4f5f6d8a6b5c4d3e2f1a0b9.jpg') center/cover;
-            box-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+            box-shadow: 0 0 30px rgba(220, 38, 38, 0.4);
             animation: float 4s ease-in-out infinite;
         }
 
@@ -55,15 +57,14 @@
         h1 {
             font-size: 48px;
             margin-bottom: 10px;
-            background: linear-gradient(90deg, #ff6b9d, #c44569, #f8b500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #dc2626; /* Красный заголовок */
+            font-weight: 800;
+            letter-spacing: -1px;
         }
 
         .subtitle {
             font-size: 20px;
-            color: #a0a0c0;
+            color: #666;
             margin-bottom: 40px;
         }
 
@@ -76,17 +77,17 @@
         }
 
         .feature {
-            background: rgba(255, 255, 255, 0.05);
+            background: #fff;
             padding: 25px;
             border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid #eee;
             transition: all 0.3s ease;
         }
 
         .feature:hover {
             transform: translateY(-5px);
-            border-color: #ff6b9d;
-            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.2);
+            border-color: #dc2626; /* Рамка становится красной при наведении */
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.15);
         }
 
         .feature-icon {
@@ -98,38 +99,39 @@
             font-size: 20px;
             font-weight: 700;
             margin-bottom: 8px;
-            color: #fff;
+            color: #111;
         }
 
         .feature-desc {
             font-size: 15px;
-            color: #a0a0c0;
+            color: #666;
             line-height: 1.5;
         }
 
         .btn {
             display: inline-block;
-            background: linear-gradient(90deg, #ff6b9d, #c44569);
+            background: #dc2626; /* Красная кнопка */
             color: #fff;
             text-decoration: none;
             padding: 20px 60px;
             border-radius: 50px;
             font-size: 22px;
             font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
             margin-bottom: 20px;
         }
 
         .btn:hover {
+            background: #b91c1c; /* Темнеет при наведении */
             transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.5);
         }
 
         .footer {
             margin-top: 40px;
             font-size: 14px;
-            color: #666;
+            color: #999;
         }
 
         @media (max-width: 600px) {
@@ -187,7 +189,7 @@
             </div>
         </div>
         
-        <!-- ТУТ ПОМЕНЯЙ НИК НА СВОЙ -->
+        <!-- ТУТ ПОМЕНЯЙ НИК НА СВОЙ, ЕСЛИ НУЖНО -->
         <a href="https://t.me/neit_ferriks_bot" class="btn" target="_blank">🚀 Начать играть</a>
         
         <div class="footer">
