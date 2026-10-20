@@ -36,16 +36,14 @@
             animation: fadeIn 0.4s ease;
         }
 
-        .screen.active {
-            display: block;
-        }
+        .screen.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ====== ЭФФЕКТ ЖИДКОГО СТЕКЛА ====== */
+        /* ====== ЖИДКОЕ СТЕКЛО ====== */
         .glass-panel {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(16px);
@@ -56,7 +54,7 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
         }
 
-        /* ====== ГЛАВНАЯ СТРАНИЦА ====== */
+        /* ====== ГЛАВНАЯ ====== */
         .container {
             width: 100%;
             border-radius: 24px;
@@ -75,7 +73,35 @@
             background-color: rgba(220, 38, 38, 0.1);
             box-shadow: 0 0 30px rgba(220, 38, 38, 0.3);
             animation: float 4s ease-in-out infinite;
+            cursor: pointer;
+            position: relative;
+            transition: box-shadow 0.3s;
         }
+
+        .avatar:hover {
+            box-shadow: 0 0 40px rgba(220, 38, 38, 0.6);
+        }
+
+        .avatar::after {
+            content: "✎";
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            border: 2px solid #050505;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .avatar:hover::after { opacity: 1; }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
@@ -149,7 +175,7 @@
             box-shadow: 0 15px 40px rgba(220, 38, 38, 0.5);
         }
 
-        /* ====== СТРАНИЦА ПРОФИЛЯ ====== */
+        /* ====== ПРОФИЛЬ ====== */
         .profile-card {
             border-radius: 24px;
             padding: 40px;
@@ -160,7 +186,6 @@
         .profile-avatar {
             width: 100px;
             height: 100px;
-            background: rgba(220, 38, 38, 0.2);
             border-radius: 50%;
             margin: 0 auto 20px;
             border: 2px solid rgba(220, 38, 38, 0.5);
@@ -168,7 +193,34 @@
             align-items: center;
             justify-content: center;
             font-size: 40px;
+            background: url('https://i.pinimg.com/736x/72/4b/85/724b85c61915ff62164cfe776076c635.jpg') center/cover no-repeat;
+            background-color: rgba(220, 38, 38, 0.2);
+            cursor: pointer;
+            position: relative;
+            transition: box-shadow 0.3s;
         }
+
+        .profile-avatar:hover { box-shadow: 0 0 25px rgba(220, 38, 38, 0.6); }
+
+        .profile-avatar::after {
+            content: "✎";
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            border: 2px solid #050505;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .profile-avatar:hover::after { opacity: 1; }
 
         .profile-nick { font-size: 28px; font-weight: bold; margin-bottom: 5px; }
         .profile-id { font-size: 14px; color: #888; margin-bottom: 30px; }
@@ -190,7 +242,7 @@
         .stat-box-title { font-size: 12px; color: #aaa; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
         .stat-box-value { font-size: 24px; font-weight: bold; color: #ef4444; text-shadow: 0 0 10px rgba(220,38,38,0.5); }
 
-        /* ====== СТРАНИЦА VIP ====== */
+        /* ====== VIP ====== */
         .vip-header { text-align: center; margin-top: 20px; margin-bottom: 30px; }
         .vip-header h2 { font-size: 36px; color: #dc2626; }
         
@@ -224,7 +276,7 @@
         .vip-price .price { font-size: 24px; font-weight: bold; color: #ef4444; }
         .vip-price .currency { font-size: 14px; color: #888; }
 
-        /* ====== НИЖНЯЯ ПАНЕЛЬ (ЖИДКОЕ СТЕКЛО) ====== */
+        /* ====== НИЖНЯЯ ПАНЕЛЬ ====== */
         .bottom-nav {
             position: fixed;
             bottom: 20px;
@@ -266,7 +318,7 @@
         .nav-item.active .nav-icon { transform: translateY(-2px); text-shadow: 0 0 15px rgba(220,38,38,0.8); }
         .nav-text { font-size: 12px; font-weight: bold; }
 
-        /* ====== МОДАЛКА (ЖИДКОЕ СТЕКЛО) ====== */
+        /* ====== МОДАЛКА ====== */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -281,6 +333,7 @@
             z-index: 1000;
             opacity: 0;
             transition: opacity 0.3s ease;
+            padding: 20px;
         }
 
         .modal-overlay.active { display: flex; opacity: 1; }
@@ -294,7 +347,7 @@
             border-radius: 24px;
             padding: 40px;
             max-width: 500px;
-            width: 90%;
+            width: 100%;
             text-align: center;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
             transform: scale(0.85);
@@ -324,21 +377,86 @@
         .modal-btn-go { background: linear-gradient(135deg, #dc2626, #991b1b); color: #fff; }
         .modal-btn-go:hover { background: linear-gradient(135deg, #ef4444, #dc2626); box-shadow: 0 0 20px rgba(220,38,38,0.4); }
 
+        /* ====== РЕДАКТОР АВАТАРКИ ====== */
+        .avatar-editor {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .avatar-preview {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            margin: 0 auto;
+            border: 2px solid rgba(220, 38, 38, 0.5);
+            background: url('https://i.pinimg.com/736x/72/4b/85/724b85c61915ff62164cfe776076c635.jpg') center/cover no-repeat;
+            background-color: rgba(220, 38, 38, 0.2);
+            box-shadow: 0 0 25px rgba(220, 38, 38, 0.4);
+        }
+
+        .avatar-input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 15px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .avatar-input:focus {
+            border-color: rgba(220, 38, 38, 0.6);
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.2);
+        }
+
+        .avatar-input::placeholder { color: #666; }
+
+        .avatar-file-label {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+            color: #ccc;
+        }
+
+        .avatar-file-label:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(220, 38, 38, 0.5);
+        }
+
+        .avatar-file-label input { display: none; }
+
+        .avatar-hint {
+            font-size: 13px;
+            color: #888;
+            line-height: 1.5;
+        }
+
         @media (max-width: 600px) {
             h1 { font-size: 32px; }
             .container { padding: 30px 20px; }
             .stats-grid { grid-template-columns: 1fr; }
             .vip-item { flex-direction: column; text-align: center; gap: 15px; }
             .bottom-nav { bottom: 10px; width: 95%; }
+            .modal { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ================= ЭКРАН 1: ГЛАВНАЯ ================= -->
+    <!-- ===== ГЛАВНАЯ ===== -->
     <div class="screen active" id="screen-home">
         <div class="container glass-panel">
-            <div class="avatar"></div>
+            <div class="avatar" id="homeAvatar" onclick="openAvatarEditor()" title="Нажми, чтобы сменить аватарку"></div>
             <h1>Нейт Бот</h1>
             <p class="subtitle">Твой игровой мир прямо в Telegram</p>
             
@@ -379,10 +497,10 @@
         </div>
     </div>
 
-    <!-- ================= ЭКРАН 2: ПРОФИЛЬ ================= -->
+    <!-- ===== ПРОФИЛЬ ===== -->
     <div class="screen" id="screen-profile">
         <div class="profile-card glass-panel">
-            <div class="profile-avatar">👤</div>
+            <div class="profile-avatar" id="profileAvatar" onclick="openAvatarEditor()" title="Нажми, чтобы сменить аватарку"></div>
             <div class="profile-nick">Игрок Нейта</div>
             <div class="profile-id">ID: 123456789</div>
 
@@ -412,7 +530,7 @@
         </div>
     </div>
 
-    <!-- ================= ЭКРАН 3: VIP ================= -->
+    <!-- ===== VIP ===== -->
     <div class="screen" id="screen-vip">
         <div class="vip-header">
             <h2>👑 VIP Статусы</h2>
@@ -481,7 +599,7 @@
         </div>
     </div>
 
-    <!-- ================= НИЖНЯЯ ПАНЕЛЬ (ЖИДКОЕ СТЕКЛО) ================= -->
+    <!-- ===== НИЖНЯЯ ПАНЕЛЬ ===== -->
     <div class="bottom-nav">
         <div class="nav-item active" onclick="switchScreen('home', this)">
             <div class="nav-icon">🏠</div>
@@ -497,7 +615,7 @@
         </div>
     </div>
 
-    <!-- === ВСПЛЫВАЮЩЕЕ ОКНО === -->
+    <!-- ===== МОДАЛКА ФИЧ ===== -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
         <div class="modal" onclick="event.stopPropagation()">
             <div class="modal-icon" id="modalIcon">💰</div>
@@ -510,8 +628,42 @@
         </div>
     </div>
 
-    <!-- === СКРИПТ (ЛОГИКА) === -->
+    <!-- ===== МОДАЛКА АВАТАРКИ ===== -->
+    <div class="modal-overlay" id="avatarOverlay" onclick="closeAvatarEditor(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-icon">🖼</div>
+            <div class="modal-title">Сменить аватарку</div>
+            <div class="modal-text" style="margin-bottom: 20px;">Вставь ссылку на картинку или загрузи файл с устройства</div>
+
+            <div class="avatar-editor">
+                <div class="avatar-preview" id="avatarPreview"></div>
+
+                <input 
+                    type="url" 
+                    class="avatar-input" 
+                    id="avatarUrlInput" 
+                    placeholder="https://example.com/avatar.jpg"
+                >
+
+                <label class="avatar-file-label">
+                    📁 Загрузить файл с устройства
+                    <input type="file" accept="image/*" id="avatarFileInput" onchange="handleAvatarFile(event)">
+                </label>
+
+                <div class="avatar-hint">
+                    💡 Картинка сохранится в этом браузере. Чтобы сбросить — нажми «Сбросить».
+                </div>
+            </div>
+
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-close" onclick="resetAvatar()">Сбросить</button>
+                <button class="modal-btn modal-btn-go" onclick="applyAvatarUrl()">Применить</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // ============ ДАННЫЕ ФИЧ ============
         const featuresData = {
             economy: {
                 icon: "💰", title: "Экономика",
@@ -539,6 +691,11 @@
             }
         };
 
+        // ============ СТАНДАРТНАЯ АВАТАРКА ============
+        const DEFAULT_AVATAR = "https://i.pinimg.com/736x/72/4b/85/724b85c61915ff62164cfe776076c635.jpg";
+        const STORAGE_KEY = "neit_avatar_url";
+
+        // ============ МОДАЛКА ФИЧ ============
         function openModal(type) {
             const data = featuresData[type];
             if (!data) return;
@@ -552,6 +709,7 @@
             document.getElementById('modalOverlay').classList.remove('active');
         }
 
+        // ============ НАВИГАЦИЯ ============
         function switchScreen(screenName, element) {
             document.querySelectorAll('.screen').forEach(screen => {
                 screen.classList.remove('active');
@@ -565,6 +723,89 @@
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // ============ АВАТАРКА ============
+        function getAvatarUrl() {
+            return localStorage.getItem(STORAGE_KEY) || DEFAULT_AVATAR;
+        }
+
+        function setAvatarOnElements(url) {
+            const homeAvatar = document.getElementById('homeAvatar');
+            const profileAvatar = document.getElementById('profileAvatar');
+            const preview = document.getElementById('avatarPreview');
+            if (homeAvatar) homeAvatar.style.backgroundImage = `url('${url}')`;
+            if (profileAvatar) profileAvatar.style.backgroundImage = `url('${url}')`;
+            if (preview) preview.style.backgroundImage = `url('${url}')`;
+        }
+
+        function loadAvatar() {
+            setAvatarOnElements(getAvatarUrl());
+        }
+
+        function openAvatarEditor() {
+            const url = localStorage.getItem(STORAGE_KEY) || '';
+            document.getElementById('avatarUrlInput').value = url;
+            setAvatarOnElements(getAvatarUrl());
+            document.getElementById('avatarOverlay').classList.add('active');
+        }
+
+        function closeAvatarEditor(event) {
+            if (event && event.target !== event.currentTarget) return;
+            document.getElementById('avatarOverlay').classList.remove('active');
+        }
+
+        function applyAvatarUrl() {
+            const input = document.getElementById('avatarUrlInput');
+            const url = input.value.trim();
+
+            if (!url) {
+                alert('Вставь ссылку на картинку или загрузи файл');
+                return;
+            }
+
+            // проверяем, что картинка реально грузится
+            const testImg = new Image();
+            testImg.onload = () => {
+                localStorage.setItem(STORAGE_KEY, url);
+                setAvatarOnElements(url);
+                document.getElementById('avatarOverlay').classList.remove('active');
+            };
+            testImg.onerror = () => {
+                alert('Не удалось загрузить картинку по этой ссылке.\nПроверь, что ссылка прямая (заканчивается на .jpg/.png/.webp) и открывается в браузере.');
+            };
+            testImg.src = url;
+        }
+
+        function handleAvatarFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            if (!file.type.startsWith('image/')) {
+                alert('Это не картинка');
+                return;
+            }
+            if (file.size > 2 * 1024 * 1024) {
+                alert('Файл больше 2 МБ. Выбери поменьше.');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const dataUrl = e.target.result;
+                localStorage.setItem(STORAGE_KEY, dataUrl);
+                setAvatarOnElements(dataUrl);
+                document.getElementById('avatarUrlInput').value = '(загруженный файл)';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetAvatar() {
+            localStorage.removeItem(STORAGE_KEY);
+            setAvatarOnElements(DEFAULT_AVATAR);
+            document.getElementById('avatarUrlInput').value = '';
+            document.getElementById('avatarFileInput').value = '';
+        }
+
+        // ============ СТАРТ ============
+        loadAvatar();
     </script>
 </body>
 </html>
