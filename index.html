@@ -13,7 +13,6 @@
         }
 
         body {
-            /* Глубокий фон с красными всполохами для контраста со стеклом */
             background: #050505;
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(220, 38, 38, 0.15) 0%, transparent 40%),
@@ -52,8 +51,8 @@
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-top: 1px solid rgba(255, 255, 255, 0.2); /* Блик сверху */
-            border-left: 1px solid rgba(255, 255, 255, 0.2); /* Блик слева */
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
         }
 
@@ -72,7 +71,8 @@
             border-radius: 50%;
             border: 3px solid rgba(255, 255, 255, 0.2);
             margin: 0 auto 20px;
-            background: url('https://i.pinimg.com/736x/8c/6d/a1/8c6da1b4f4f5f6d8a6b5c4d3e2f1a0b9.jpg') center/cover;
+            background: url('https://i.pinimg.com/736x/72/4b/85/724b85c61915ff62164cfe776076c635.jpg') center/cover no-repeat;
+            background-color: rgba(220, 38, 38, 0.1);
             box-shadow: 0 0 30px rgba(220, 38, 38, 0.3);
             animation: float 4s ease-in-out infinite;
         }
@@ -227,7 +227,7 @@
         /* ====== НИЖНЯЯ ПАНЕЛЬ (ЖИДКОЕ СТЕКЛО) ====== */
         .bottom-nav {
             position: fixed;
-            bottom: 20px; /* Отступ от низа экрана */
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             width: 90%;
@@ -237,7 +237,7 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-top: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 30px; /* Закругленная панель */
+            border-radius: 30px;
             display: flex;
             justify-content: space-around;
             padding: 15px 10px;
@@ -512,7 +512,6 @@
 
     <!-- === СКРИПТ (ЛОГИКА) === -->
     <script>
-        // Тексты для модального окна
         const featuresData = {
             economy: {
                 icon: "💰", title: "Экономика",
