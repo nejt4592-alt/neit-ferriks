@@ -376,29 +376,68 @@
         .modal-btn-go:hover { background: linear-gradient(135deg, #ef4444, #dc2626); box-shadow: 0 0 20px rgba(220,38,38,0.4); }
 
         /* ====== РЕДАКТОР АВАТАРКИ ====== */
-        .avatar-editor { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
+        .avatar-editor {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
         .avatar-preview {
-            width: 110px; height: 110px; border-radius: 50%; margin: 0 auto;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            margin: 0 auto;
             border: 2px solid rgba(220, 38, 38, 0.5);
             background: url('https://i.pinimg.com/736x/72/4b/85/724b85c61915ff62164cfe776076c635.jpg') center/cover no-repeat;
             background-color: rgba(220, 38, 38, 0.2);
             box-shadow: 0 0 25px rgba(220, 38, 38, 0.4);
         }
+
         .avatar-input {
-            width: 100%; padding: 14px 18px; background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px;
-            color: #fff; font-size: 15px; font-family: inherit; outline: none; transition: border-color 0.3s;
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 15px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s;
         }
-        .avatar-input:focus { border-color: rgba(220, 38, 38, 0.6); box-shadow: 0 0 15px rgba(220, 38, 38, 0.2); }
+
+        .avatar-input:focus {
+            border-color: rgba(220, 38, 38, 0.6);
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.2);
+        }
+
         .avatar-input::placeholder { color: #666; }
+
         .avatar-file-label {
-            display: inline-block; padding: 12px 24px;
-            background: rgba(255, 255, 255, 0.08); border: 1px dashed rgba(255, 255, 255, 0.2);
-            border-radius: 12px; cursor: pointer; font-size: 15px; transition: 0.3s; color: #ccc;
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+            color: #ccc;
         }
-        .avatar-file-label:hover { background: rgba(255, 255, 255, 0.12); border-color: rgba(220, 38, 38, 0.5); }
+
+        .avatar-file-label:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(220, 38, 38, 0.5);
+        }
+
         .avatar-file-label input { display: none; }
-        .avatar-hint { font-size: 13px; color: #888; line-height: 1.5; }
+
+        .avatar-hint {
+            font-size: 13px;
+            color: #888;
+            line-height: 1.5;
+        }
 
         @media (max-width: 600px) {
             h1 { font-size: 32px; }
@@ -460,32 +499,34 @@
     <div class="screen" id="screen-profile">
         <div class="profile-card glass-panel">
             <div class="profile-avatar" id="profileAvatar" onclick="openAvatarEditor()" title="Нажми, чтобы сменить аватарку"></div>
-            
-            <div class="profile-nick" id="profileNick">Загрузка...</div>
-            <div class="profile-id" id="profileId">ID: ...</div>
+            <div class="profile-nick">Игрок Нейта</div>
+            <div class="profile-id">ID: 123456789</div>
 
             <div class="stats-grid">
                 <div class="stat-box">
                     <div class="stat-box-title">Баланс монет</div>
-                    <div class="stat-box-value" id="profileBalance">0</div>
+                    <div class="stat-box-value" id="stat-balance">1 500 000</div>
                 </div>
                 <div class="stat-box">
                     <div class="stat-box-title">Нейткоины</div>
-                    <div class="stat-box-value">💎 0</div>
+                    <div class="stat-box-value">💎 25</div>
                 </div>
                 <div class="stat-box">
                     <div class="stat-box-title">Рейтинг</div>
-                    <div class="stat-box-value" id="profileRating">⭐ 0</div>
+                    <div class="stat-box-value" id="stat-rating">⭐ 450</div>
                 </div>
                 <div class="stat-box">
                     <div class="stat-box-title">Бизнес</div>
-                    <div class="stat-box-value" id="profileBiz">Lvl 0</div>
+                    <div class="stat-box-value" id="stat-biz">Lvl 5</div>
                 </div>
             </div>
             
-            <p style="color: #888; font-size: 14px; margin-top: 20px; margin-bottom: 20px;" id="profilePet">
-                🐾 Питомец: нет
+            <p style="color: #888; font-size: 14px; margin-top: 20px; margin-bottom: 20px;" id="test-data-note">
+                * Пока это тестовые данные. Открой свой профиль через бота, чтобы увидеть реальную статистику!
             </p>
+            
+            <div id="site-pet-info" style="display: none; margin-top: 15px; font-size: 18px; color: #ef4444; font-weight: bold;"></div>
+
             <a href="https://t.me/neit_ferriks_bot" class="btn" target="_blank">Открыть в Telegram</a>
         </div>
     </div>
@@ -565,7 +606,7 @@
             <div class="nav-icon">🏠</div>
             <div class="nav-text">Главная</div>
         </div>
-        <div class="nav-item" onclick="switchScreen('profile', this); loadProfile();">
+        <div class="nav-item" onclick="switchScreen('profile', this)">
             <div class="nav-icon">👤</div>
             <div class="nav-text">Профиль</div>
         </div>
@@ -597,12 +638,22 @@
 
             <div class="avatar-editor">
                 <div class="avatar-preview" id="avatarPreview"></div>
-                <input type="url" class="avatar-input" id="avatarUrlInput" placeholder="https://example.com/avatar.jpg">
+
+                <input 
+                    type="url" 
+                    class="avatar-input" 
+                    id="avatarUrlInput" 
+                    placeholder="https://example.com/avatar.jpg"
+                >
+
                 <label class="avatar-file-label">
                     📁 Загрузить файл с устройства
                     <input type="file" accept="image/*" id="avatarFileInput" onchange="handleAvatarFile(event)">
                 </label>
-                <div class="avatar-hint">💡 Картинка сохранится в этом браузере.</div>
+
+                <div class="avatar-hint">
+                    💡 Картинка сохранится в этом браузере. Чтобы сбросить — нажми «Сбросить».
+                </div>
             </div>
 
             <div class="modal-buttons">
@@ -612,29 +663,40 @@
         </div>
     </div>
 
-    <!-- ===== СКРИПТ ===== -->
     <script>
-        // ==========================================
-        // НАСТРОЙКИ SUPABASE
-        // ==========================================
-        const SUPABASE_URL = "https://poxhawnlrqjvpqjliauaa.supabase.co";
-        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBveGhhd25scnFqdnBxbGlhdWFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI1NjU3MjQsImV4cCI6MjEwODE0MTcyNH0.8VRo_yJwSUleT6GuEQDaRUxbVy_hQZddxL7E9RlDIow";
-        
-        // ТВОЙ TELEGRAM ID (чтобы сайт знал, чей профиль показывать)
-        const MY_TELEGRAM_ID = 1791177759; 
-        
-        // ==========================================
-        // ЛОГИКА САЙТА
-        // ==========================================
+        // ============ ДАННЫЕ ФИЧ ============
         const featuresData = {
-            economy: { icon: "💰", title: "Экономика", text: "Начни свой путь с нуля! Работай, выполняй ежедневные бонусы и копи монеты. Купи свой первый бизнес, чтобы деньги капали сами, но не забывай платить налоги, иначе зарплата остановится!" },
-            neitcoins: { icon: "💎", title: "Нейткоины", text: "Премиум-валюта бота. Её нельзя купить за монеты в обычном магазине. Фарми Нейткоины раз в час, участвуй в ивентах и обменивай свои миллионы на заветные кристаллы. Покупай VIP-статусы и получай бонусы к доходу!" },
-            pets: { icon: "🐾", title: "Питомцы", text: "Твой верный цифровой друг. Выбери лису, кошку, собаку или хорька. Корми, гладь и играй с ним каждый день. Если питомец полюбит тебя (50+ ❤️), он начнет приносить пассивный бонус к зарплате бизнеса." },
-            casino: { icon: "🎰", title: "Азарт", text: "Испытай фортуну! Залетай в казино, ставь на чёт/нечет в рулетке или вкидывай весь баланс. Помни: удача любит смелых, но иногда лучше вовремя остановиться. Шанс выигрыша — 45%." },
-            gifts: { icon: "🎁", title: "Подарки", text: "Купи розу, мишку или кольцо и подари другу или подруге прямо в боте. Добавь личную записку! Подарки красуются в профиле и повышают твой статус среди других игроков." },
-            top: { icon: "🏆", title: "Соревнования", text: "Стань легендой Нейта! Попади в топ по рейтингу или по количеству денег. Прокачивай свой профиль, зарабатывай статусы и докажи всем, что ты лучший игрок." }
+            economy: {
+                icon: "💰", title: "Экономика",
+                text: "Начни свой путь с нуля! Работай, выполняй ежедневные бонусы и копи монеты. Купи свой первый бизнес, чтобы деньги капали сами, но не забывай платить налоги, иначе зарплата остановится!"
+            },
+            neitcoins: {
+                icon: "💎", title: "Нейткоины",
+                text: "Премиум-валюта бота. Её нельзя купить за монеты в обычном магазине. Фарми Нейткоины раз в час, участвуй в ивентах и обменивай свои миллионы на заветные кристаллы. Покупай VIP-статусы и получай бонусы к доходу!"
+            },
+            pets: {
+                icon: "🐾", title: "Питомцы",
+                text: "Твой верный цифровой друг. Выбери лису, кошку, собаку или хорька. Корми, гладь и играй с ним каждый день. Если питомец полюбит тебя (50+ ❤️), он начнет приносить пассивный бонус к зарплате бизнеса."
+            },
+            casino: {
+                icon: "🎰", title: "Азарт",
+                text: "Испытай фортуну! Залетай в казино, ставь на чёт/нечет в рулетке или вкидывай весь баланс. Помни: удача любит смелых, но иногда лучше вовремя остановиться. Шанс выигрыша — 45%."
+            },
+            gifts: {
+                icon: "🎁", title: "Подарки",
+                text: "Купи розу, мишку или кольцо и подари другу или подруге прямо в боте. Добавь личную записку! Подарки красуются в профиле и повышают твой статус среди других игроков."
+            },
+            top: {
+                icon: "🏆", title: "Соревнования",
+                text: "Стань легендой Нейта! Попади в топ по рейтингу или по количеству денег. Прокачивай свой профиль, зарабатывай статусы и докажи всем, что ты лучший игрок."
+            }
         };
 
+        // ============ СТАНДАРТНАЯ АВАТАРКА ============
+        const DEFAULT_AVATAR = "https://i.pinimg.com/736x/72/4b/85/724b85c61915ff62164cfe776076c635.jpg";
+        const STORAGE_KEY = "neit_avatar_url";
+
+        // ============ МОДАЛКА ФИЧ ============
         function openModal(type) {
             const data = featuresData[type];
             if (!data) return;
@@ -648,65 +710,25 @@
             document.getElementById('modalOverlay').classList.remove('active');
         }
 
+        // ============ НАВИГАЦИЯ ============
         function switchScreen(screenName, element) {
-            document.querySelectorAll('.screen').forEach(screen => { screen.classList.remove('active'); });
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
             document.getElementById('screen-' + screenName).classList.add('active');
-            document.querySelectorAll('.nav-item').forEach(nav => { nav.classList.remove('active'); });
+            
+            document.querySelectorAll('.nav-item').forEach(nav => {
+                nav.classList.remove('active');
+            });
             element.classList.add('active');
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ==========================================
-        // ЧТЕНИЕ ДАННЫХ ИЗ SUPABASE
-        // ==========================================
-        async function loadProfile() {
-            try {
-                // Делаем запрос к таблице players
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/players?user_id=eq.${MY_TELEGRAM_ID}&select=*`, {
-                    headers: {
-                        'apikey': SUPABASE_KEY,
-                        'Authorization': `Bearer ${SUPABASE_KEY}`
-                    }
-                });
-                
-                const data = await response.json();
-                
-                if (data && data.length > 0) {
-                    const player = data[0];
-                    
-                    // Форматируем числа (1500000 -> 1 500 000)
-                    const formatNum = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-                    
-                    // Обновляем HTML элементы
-                    document.getElementById('profileNick').innerText = player.nickname || "Игрок Нейта";
-                    document.getElementById('profileId').innerText = `ID: ${player.user_id}`;
-                    document.getElementById('profileBalance').innerText = formatNum(player.balance || 0);
-                    document.getElementById('profileRating').innerText = `⭐ ${formatNum(player.rating || 0)}`;
-                    document.getElementById('profileBiz').innerText = `Lvl ${player.business_level || 0}`;
-                    
-                    if (player.pet_name) {
-                        document.getElementById('profilePet').innerText = `🐾 Питомец: ${player.pet_name}`;
-                    } else {
-                        document.getElementById('profilePet').innerText = `🐾 Питомец: нет`;
-                    }
-                } else {
-                    // Если в базе пусто
-                    document.getElementById('profileNick').innerText = "Профиль не найден";
-                    document.getElementById('profileId').innerText = "Напиши боту 'старт'";
-                }
-            } catch (error) {
-                console.error("Ошибка загрузки профиля:", error);
-                document.getElementById('profileNick').innerText = "Ошибка сети";
-            }
+        // ============ АВАТАРКА ============
+        function getAvatarUrl() {
+            return localStorage.getItem(STORAGE_KEY) || DEFAULT_AVATAR;
         }
-
-        // ==========================================
-        // АВАТАРКА (localStorage)
-        // ==========================================
-        const DEFAULT_AVATAR = "https://i.pinimg.com/736x/72/4b/85/724b85c61915ff62164cfe776076c635.jpg";
-        const STORAGE_KEY = "neit_avatar_url";
-
-        function getAvatarUrl() { return localStorage.getItem(STORAGE_KEY) || DEFAULT_AVATAR; }
 
         function setAvatarOnElements(url) {
             const homeAvatar = document.getElementById('homeAvatar');
@@ -717,7 +739,9 @@
             if (preview) preview.style.backgroundImage = `url('${url}')`;
         }
 
-        function loadAvatar() { setAvatarOnElements(getAvatarUrl()); }
+        function loadAvatar() {
+            setAvatarOnElements(getAvatarUrl());
+        }
 
         function openAvatarEditor() {
             const url = localStorage.getItem(STORAGE_KEY) || '';
@@ -734,21 +758,35 @@
         function applyAvatarUrl() {
             const input = document.getElementById('avatarUrlInput');
             const url = input.value.trim();
-            if (!url) { alert('Вставь ссылку или загрузи файл'); return; }
+
+            if (!url) {
+                alert('Вставь ссылку на картинку или загрузи файл');
+                return;
+            }
+
             const testImg = new Image();
             testImg.onload = () => {
                 localStorage.setItem(STORAGE_KEY, url);
                 setAvatarOnElements(url);
                 document.getElementById('avatarOverlay').classList.remove('active');
             };
-            testImg.onerror = () => { alert('Не удалось загрузить картинку по ссылке.'); };
+            testImg.onerror = () => {
+                alert('Не удалось загрузить картинку по этой ссылке.');
+            };
             testImg.src = url;
         }
 
         function handleAvatarFile(event) {
             const file = event.target.files[0];
             if (!file) return;
-            if (file.size > 2 * 1024 * 1024) { alert('Файл больше 2 МБ.'); return; }
+            if (!file.type.startsWith('image/')) {
+                alert('Это не картинка');
+                return;
+            }
+            if (file.size > 2 * 1024 * 1024) {
+                alert('Файл больше 2 МБ. Выбери поменьше.');
+                return;
+            }
             const reader = new FileReader();
             reader.onload = (e) => {
                 const dataUrl = e.target.result;
@@ -766,15 +804,54 @@
             document.getElementById('avatarFileInput').value = '';
         }
 
-        // ==========================================
-        // СТАРТ
-        // ==========================================
+        // ============ ЧТЕНИЕ ПРОФИЛЯ ИЗ ССЫЛКИ (ОТ БОТА) ============
+        function loadProfileFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Если в ссылке есть ID, значит мы перешли с бота
+            if (urlParams.has('id')) {
+                // Переключаем экран на Профиль
+                document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
+                document.getElementById('screen-profile').classList.add('active');
+                
+                // Меняем активную кнопку в меню
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                document.querySelectorAll('.nav-item')[1].classList.add('active');
+
+                // Подставляем данные
+                const nick = urlParams.get('nick') || 'Игрок';
+                const id = urlParams.get('id') || '0';
+                const balance = urlParams.get('balance') || '0';
+                const rating = urlParams.get('rating') || '0';
+                const biz = urlParams.get('biz') || '0';
+                const pet = urlParams.get('pet') || 'Нет';
+
+                // Форматируем числа
+                const fmt = (num) => new Intl.NumberFormat('ru-RU').format(num);
+
+                // Меняем текст на странице
+                document.querySelector('.profile-nick').innerText = nick;
+                document.querySelector('.profile-id').innerText = 'ID: ' + id;
+                
+                // Меняем блоки со статистикой
+                document.getElementById('stat-balance').innerText = fmt(balance);
+                document.getElementById('stat-rating').innerText = '⭐ ' + fmt(rating);
+                document.getElementById('stat-biz').innerText = 'Lvl ' + biz;
+
+                // Скрываем тестовый текст
+                const testNote = document.getElementById('test-data-note');
+                if (testNote) testNote.style.display = 'none';
+
+                // Показываем питомца
+                const petDiv = document.getElementById('site-pet-info');
+                petDiv.style.display = 'block';
+                petDiv.innerText = '🐾 Питомец: ' + pet;
+            }
+        }
+
+        // ============ СТАРТ ============
         loadAvatar();
-        
-        // Автоматически загружаем профиль при открытии страницы (на случай если сразу переключили вкладку)
-        window.onload = () => {
-            loadProfile();
-        };
+        loadProfileFromUrl();
     </script>
 </body>
 </html>
