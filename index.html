@@ -509,7 +509,7 @@
                 </div>
                 <div class="stat-box">
                     <div class="stat-box-title">Нейткоины</div>
-                    <div class="stat-box-value">💎 25</div>
+                    <div class="stat-box-value" id="stat-neitcoins">💎 25</div>
                 </div>
                 <div class="stat-box">
                     <div class="stat-box-title">Рейтинг</div>
@@ -536,6 +536,9 @@
         <div class="vip-header">
             <h2>👑 VIP Статусы</h2>
             <p style="color: #888; margin-top: 10px;">Покупай за Нейткоины и получай бонусы к зарплате!</p>
+            <div id="site-neitcoins" style="margin-top: 15px; font-size: 20px; color: #fff; font-weight: bold; display: none;">
+                💎 Твои Нейткоины: <span style="color: #ef4444;">0</span>
+            </div>
         </div>
 
         <div class="vip-list">
@@ -720,7 +723,7 @@
             document.querySelectorAll('.nav-item').forEach(nav => {
                 nav.classList.remove('active');
             });
-            element.classList.add('active');
+            if (element) element.classList.add('active');
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -825,6 +828,7 @@
                 const rating = urlParams.get('rating') || '0';
                 const biz = urlParams.get('biz') || '0';
                 const pet = urlParams.get('pet') || 'Нет';
+                const neitcoins = urlParams.get('neitcoins') || '0';
 
                 // Форматируем числа
                 const fmt = (num) => new Intl.NumberFormat('ru-RU').format(num);
@@ -837,6 +841,12 @@
                 document.getElementById('stat-balance').innerText = fmt(balance);
                 document.getElementById('stat-rating').innerText = '⭐ ' + fmt(rating);
                 document.getElementById('stat-biz').innerText = 'Lvl ' + biz;
+                
+                // Меняем блок Нейткоинов
+                const statNeit = document.getElementById('stat-neitcoins');
+                if (statNeit) {
+                    statNeit.innerText = '💎 ' + fmt(neitcoins);
+                }
 
                 // Скрываем тестовый текст
                 const testNote = document.getElementById('test-data-note');
@@ -844,8 +854,17 @@
 
                 // Показываем питомца
                 const petDiv = document.getElementById('site-pet-info');
-                petDiv.style.display = 'block';
-                petDiv.innerText = '🐾 Питомец: ' + pet;
+                if (petDiv) {
+                    petDiv.style.display = 'block';
+                    petDiv.innerText = '🐾 Питомец: ' + pet;
+                }
+                
+                // Показываем нейткоины на странице VIP
+                const ncDiv = document.getElementById('site-neitcoins');
+                if (ncDiv) {
+                    ncDiv.style.display = 'block';
+                    ncDiv.innerHTML = '💎 Твои Нейткоины: <span style="color: #ef4444;">' + fmt(neitcoins) + '</span>';
+                }
             }
         }
 
