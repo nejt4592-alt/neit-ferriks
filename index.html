@@ -267,10 +267,11 @@
             background: rgba(220, 38, 38, 0.05);
         }
 
-        .vip-info h3 { font-size: 20px; margin-bottom: 5px; }
-        .vip-info p { font-size: 14px; color: #999; }
+        .vip-info { flex: 1; padding-right: 20px; }
+        .vip-info h3 { font-size: 20px; margin-bottom: 5px; color: #fff; }
+        .vip-info p { font-size: 14px; color: #999; line-height: 1.4; }
         
-        .vip-price { text-align: right; }
+        .vip-price { text-align: right; min-width: 100px; }
         .vip-price .price { font-size: 24px; font-weight: bold; color: #ef4444; }
         .vip-price .currency { font-size: 14px; color: #888; }
 
@@ -444,6 +445,7 @@
             .container { padding: 30px 20px; }
             .stats-grid { grid-template-columns: 1fr; }
             .vip-item { flex-direction: column; text-align: center; gap: 15px; }
+            .vip-info { padding-right: 0; }
             .bottom-nav { bottom: 10px; width: 95%; }
             .modal { padding: 30px 20px; }
         }
@@ -525,9 +527,9 @@
                 * Пока это тестовые данные. Открой свой профиль через бота, чтобы увидеть реальную статистику!
             </p>
             
-            <div id="site-pet-info" style="display: none; margin-top: 15px; font-size: 18px; color: #ef4444; font-weight: bold;"></div>
+            <div id="site-pet-info" style="display: none; margin-top: 15px; font-size: 18px; color: #ef4444; font-weight: bold; text-align: center;"></div>
 
-            <a href="https://t.me/neit_ferriks_bot" class="btn" target="_blank">Открыть в Telegram</a>
+            <a href="https://t.me/neit_ferriks_bot" class="btn" style="margin-top: 20px;" target="_blank">Открыть в Telegram</a>
         </div>
     </div>
 
@@ -535,17 +537,18 @@
     <div class="screen" id="screen-vip">
         <div class="vip-header">
             <h2>👑 VIP Статусы</h2>
-            <p style="color: #888; margin-top: 10px;">Покупай за Нейткоины и получай бонусы к зарплате!</p>
+            <p style="color: #888; margin-top: 10px;">Покупай за Нейткоины и получай мощные бонусы!</p>
             <div id="site-neitcoins" style="margin-top: 15px; font-size: 20px; color: #fff; font-weight: bold; display: none;">
                 💎 Твои Нейткоины: <span style="color: #ef4444;">0</span>
             </div>
         </div>
 
         <div class="vip-list">
+            <!-- Бронза -->
             <div class="vip-item">
                 <div class="vip-info">
                     <h3>🥉 VIP Бронза</h3>
-                    <p>+5% к зарплате бизнеса</p>
+                    <p>+2% к зарплате бизнеса</p>
                 </div>
                 <div class="vip-price">
                     <div class="price">10</div>
@@ -553,10 +556,11 @@
                 </div>
             </div>
             
+            <!-- Серебро -->
             <div class="vip-item">
                 <div class="vip-info">
                     <h3>🥈 VIP Серебро</h3>
-                    <p>+10% к зарплате бизнеса</p>
+                    <p>+3% к зарплате бизнеса<br>+ Возможность завести 2-го питомца (для дружбы с первым)</p>
                 </div>
                 <div class="vip-price">
                     <div class="price">30</div>
@@ -564,10 +568,11 @@
                 </div>
             </div>
             
+            <!-- Золото -->
             <div class="vip-item">
                 <div class="vip-info">
                     <h3>🥇 VIP Золото</h3>
-                    <p>+15% к зарплате бизнеса</p>
+                    <p>+15% к зарплате бизнеса<br>+ Возможность приобрести второй бизнес</p>
                 </div>
                 <div class="vip-price">
                     <div class="price">100</div>
@@ -575,10 +580,11 @@
                 </div>
             </div>
 
+            <!-- Платина -->
             <div class="vip-item">
                 <div class="vip-info">
                     <h3>💎 VIP Платина</h3>
-                    <p>+20% к зарплате бизнеса</p>
+                    <p>+20% к зарплате бизнеса<br>+ Возможность сдавать питомцев в приют (освобождать слот)</p>
                 </div>
                 <div class="vip-price">
                     <div class="price">300</div>
@@ -586,10 +592,11 @@
                 </div>
             </div>
 
+            <!-- Бриллиант -->
             <div class="vip-item">
                 <div class="vip-info">
                     <h3>👑 VIP Бриллиант</h3>
-                    <p>+30% к зарплате бизнеса (максимальный)</p>
+                    <p>+40% к зарплате бизнеса<br>+ Двойной фарм Нейткоинов<br>+ 2 бизнеса<br>+ 6 питомцев<br>+ Сдача питомцев в приют</p>
                 </div>
                 <div class="vip-price">
                     <div class="price">1000</div>
